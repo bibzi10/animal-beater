@@ -1,0 +1,79 @@
+:root { --bg: #000000; --glass: rgba(255, 255, 255, 0.04); --border: rgba(255, 255, 255, 0.1); }
+
+.app-canvas {
+  height: 100vh; width: 100vw; background: var(--bg);
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden; position: relative; color: white; font-family: 'Inter', sans-serif;
+}
+
+.bento-grid {
+  display: grid; grid-template-columns: 200px 550px 240px; 
+  grid-template-rows: 460px; gap: 15px; z-index: 10;
+}
+
+.glass-tile {
+  background: var(--glass);
+  backdrop-filter: blur(40px);
+  border: 1px solid var(--border);
+  border-radius: 35px; padding: 25px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+/* Zentrierung des Pets */
+.pet-center-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Mittig in der Hero-Kachel */
+}
+
+.avatar { 
+  font-size: 160px; cursor: pointer; user-select: none;
+  transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+.avatar.jump { transform: scale(1.18) translateY(-10px); }
+
+/* Auto-Clicker Toggle */
+.auto-clicker-zone {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.toggle-btn {
+  width: 100%; margin-top: 10px; padding: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: white; border-radius: 15px; cursor: pointer; font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+  background: var(--active-color);
+  color: black;
+  box-shadow: 0 0 20px var(--active-color);
+}
+
+/* UI Details */
+.bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+.bar-fill { height: 100%; transition: width 0.3s ease; box-shadow: 0 0 15px currentColor; }
+.stat-value { font-size: 3.5rem; font-weight: 900; margin-top: 10px; filter: drop-shadow(0 0 10px currentColor); }
+.footer-ui { text-align: center; }
+
+.grid-scroll { 
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; 
+  margin-top: 15px; overflow-y: auto; padding-right: 5px;
+}
+.slot { aspect-ratio: 1; background: rgba(255,255,255,0.02); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid transparent; }
+.locked { opacity: 0.1; }
+
+.spark {
+  position: fixed; width: 4px; height: 12px; border-radius: 2px;
+  pointer-events: none; z-index: 100; animation: spark-fx 0.5s ease-out forwards;
+}
+@keyframes spark-fx {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0); opacity: 0; }
+}
+
+.glow { position: absolute; width: 600px; height: 600px; filter: blur(150px); opacity: 0.1; pointer-events: none; transition: background 1s ease; }
+.label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.5; letter-spacing: 2px; }
+h1 { font-size: 2.2rem; margin: 0; }
